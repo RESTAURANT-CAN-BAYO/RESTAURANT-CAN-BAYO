@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font de Les Planes | Restaurant</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-green: #2E5D4B;
+            --secondary-green: #4A7C66;
+            --accent-gold: #C5A065;
+            --bg-beige: #F9F7F2;
+            --text-dark: #2C2C2C;
+            --text-light: #666;
+            --white: #FFFFFF;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-beige);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-green);
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* Language Toggle */
+        .lang-cast { display: none; }
+        
+        body.show-cast .lang-cat { display: none; }
+        body.show-cast .lang-cast { display: block; }
+        body.show-cast .lang-cat-inline { display: none; }
+        body.show-cast .lang-cast-inline { display: inline; }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+        }
+
+        .nav-links a:hover { color: var(--accent-gold); }
+
+        .lang-switch {
+            cursor: pointer;
+            border: 1px solid var(--primary-green);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            transition: all 0.3s;
+        }
+
+        .lang-switch:hover {
+            background: var(--primary-green);
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('exterior.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 1rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero h2 {
+            font-family: 'Lato', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: var(--accent-gold);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(197, 160, 101, 0.4);
+        }
+
+        .btn:hover {
+            background: var(--white);
+            color: var(--primary-green);
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-gold);
+            margin: 1rem auto 0;
+        }
+
+        /* About */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Details Grid */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .detail-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            border-top: 4px solid var(--primary-green);
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .detail-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .detail-card h3 i { color: var(--accent-gold); }
+
+        .detail-list li {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .detail-list li::before {
+            content: '•';
+            color: var(--accent-gold);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Reviews */
+        .reviews {
+            background: var(--primary-green);
+            color: var(--white);
+        }
+
+        .reviews .section-title { color: var(--white); }
+        .reviews .section-title::after { background: var(--white); }
+
+        .rating-display {
+            text-align: center;
+            font-size: 3rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 3rem;
+            color: var(--accent-gold);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .review-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .stars { color: var(--accent-gold); margin-bottom: 1rem; }
+        .review-text { font-style: italic; opacity: 0.9; }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 300px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Info Section */
+        .info-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .info-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .hours-list div {
+            margin-bottom: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+
+        .map-container {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #888;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            margin: 1.5rem 0;
+        }
+
+        .social-icons a {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin: 0 10px;
+        }
+
+        .social-icons a:hover { color: var(--accent-gold); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .about-container { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .logo { font-size: 1.2rem; }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Font de Les Planes</div>
+        <div class="nav-links">
+            <a href="#about"><span class="lang-cat">Sobre nosaltres</span><span class="lang-cast">Sobre nosotros</span></a>
+            <a href="#details"><span class="lang-cat">Detalls</span><span class="lang-cast">Detalles</span></a>
+            <a href="#gallery"><span class="lang-cat">Galeria</span><span class="lang-cast">Galería</span></a>
+            <a href="#info"><span class="lang-cat">Info</span><span class="lang-cast">Info</span></a>
+        </div>
+        <button class="lang-switch" onclick="toggleLanguage()">
+            <span class="lang-cat">CAST</span>
+            <span class="lang-cast">CAT</span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>
+                <span class="lang-cat">Font de Les Planes</span>
+                <span class="lang-cast">Font de Les Planes</span>
+            </h1>
+            <h2>
+                <span class="lang-cat">Restaurant amb encant en plena natura</span>
+                <span class="lang-cast">Restaurante con encanto en plena naturaleza</span>
+            </h2>
+            <p>
+                <span class="lang-cat">Cuina catalana tradicional amb vistes al bosc</span>
+                <span class="lang-cast">Cocina catalana tradicional con vistas al bosque</span>
+            </p>
+            <a href="#info" class="btn">
+                <span class="lang-cat">Reserva ara</span>
+                <span class="lang-cast">Reserva ahora</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title fade-in">
+            <span class="lang-cat">Sobre nosaltres</span>
+            <span class="lang-cast">Sobre nosotros</span>
+        </h2>
+        <div class="about-container fade-in">
+            <div class="about-text">
+                <p>
+                    <span class="lang-cat">Font de Les Planes és un restaurant tipus xalet amb terrassa i vistes espectaculars sobre el bosc, situat al Parc de Collserola. Oferim cuina catalana tradicional, especialitats a la brasa i paelles en un entorn natural únic.</span>
+                    <span class="lang-cast">Font de Les Planes es un restaurante tipo chalet con terraza y vistas espectaculares sobre el bosque, situado en el Parque de Collserola. Ofrecemos cocina catalana tradicional, especialidades a la brasa y paellas en un entorno natural único.</span>
+                </p>
+                <p>
+                    <span class="lang-cat">Des de fa dècades, som un referent per a les famílies barcelonines que busquen desconectar de la ciutat sense renunciar a una gastronomia de qualitat.</span>
+                    <span class="lang-cast">Desde hace décadas, somos un referente para las familias barcelonesas que buscan desconectar de la ciudad sin renunciar a una gastronomía de calidad.</span>
+                </p>
+            </div>
+            <div class="about-img">
+                <img src="history.jpg" alt="Història del restaurant">
+            </div>
+        </div>
+    </section>
+
+    <!-- Details Section -->
+    <section id="details" style="background: #fff;">
+        <h2 class="section-title fade-in">
+            <span class="lang-cat">Detalls</span>
+            <span class="lang-cast">Detalles</span>
+        </h2>
+        <div class="details-grid fade-in">
+            
+            <div class="detail-card">
+                <h3><i class="fas fa-wheelchair"></i> 
+                    <span class="lang-cat">Accessibilitat</span>
+                    <span class="lang-cast">Accesibilidad</span>
+                </h3>
+                <ul class="detail-list">
+                    <li><span class="lang-cat">Aparcament accessible per a persones amb cadira de rodes</span><span class="lang-cast">Aparcamiento accesible para personas en silla de ruedas</span></li>
+                    <li><span class="lang-cat">Entrada accessible per a persones amb cadira de rodes</span><span class="lang-cast">Entrada accesible para personas en silla de ruedas</span></li>
+                    <li><span class="lang-cat">Lavabo accessible per a persones amb cadira de rodes</span><span class="lang-cast">Aseo accesible para personas en silla de ruedas</span></li>
+                    <li><span class="lang-cat">Seients accessibles per a persones amb cadira de rodes</span><span class="lang-cast">Asientos accesibles para personas en silla de ruedas</span></li>
+                </ul>
+            </div>
+
+            <div class="detail-card">
+                <h3><i class="fas fa-utensils"></i> 
+                    <span class="lang-cat">Opcions de servei</span>
+                    <span class="lang-cast">Opciones de servicio</span>
+                </h3>
+                <ul class="detail-list">
+                    <li><span class="lang-cat">Terrassa exterior</span><span class="lang-cast">Terraza exterior</span></li>
+                    <li><span class="lang-cat">Menjar per emportar</span><span class="lang-cast">Comida para llevar</span></li>
+                    <li><span class="lang-cat">Consum a l'establiment</span><span class="lang-cast">Consumo en el establecimiento</span></li>
+                    <li><span class="lang-cat">Entrega disponible</span><span class="lang-cast">Entrega disponible</span></li>
+                </ul>
+            </div>
+
+            <div class="detail-card">
+                <h3><i class="fas fa-star"></i> 
+                    <span class="lang-cat">Destacat</span>
+                    <span class="lang-cast">Destacado</span>
+                </h3>
+                <ul class="detail-list">
+                    <li><span class="lang-cat">Bon cafè</span><span class="lang-cast">Buen café</span></li>
+                    <li><span class="lang-cat">Excel·lent carta de vins</span><span class="lang-cast">Excelente carta de vinos</span></li>
+                    <li><span class="lang-cat">Postres de qualitat</span><span class="lang-cast">Postres de calidad</span></li>
+                </ul>
+            </div>
+
+            <div class="detail-card">
+                <h3><i class="fas fa-users"></i> 
+                    <span class="lang-cat">Per què és popular</span>
+                    <span class="lang-cast">Por qué es popular</span>
+                </h3>
+                <ul class="detail-list">
+                    <li><span class="lang-cat">Esmorzars</span><span class="lang-cast">Desayunos</span></li>
+                    <li><span class="lang-cat">Dinars</span><span class="lang-cast">Comidas</span></li>
+                    <li><span class="lang-cat">Sopars</span><span class="lang-cast">Cenas</span></li>
+                    <li><span class="lang-cat">Ideal per menjar sol</span><span class="lang-cast">Ideal para comer solo</span></li>
+                </ul>
+            </div>
+
+            <div class="detail-card">
+                <h3><i class="fas fa-glass-cheers"></i> 
+                    <span class="lang-cat">Ofertes</span>
+                    <span class="lang-cast">Ofertas</span>
+                </h3>
+                <ul class="detail-list">
+                    <li><span class="lang-cat">Alcohol, Begudes destil·lades, Cervesa, Vi</span><span class="lang-cast">Alcohol, Bebidas destiladas, Cerveza, Vino</span></li>
+                    <li><span class="lang-cat">Cafè</span><span class="lang-cast">Café</span></li>
+                    <li><span class="lang-cat">Opcions veganes</span><span class="lang-cast">Opciones veganas</span></li>
+                    <li><span class="lang-cat">Plats per compartir</span><span class="lang-cast">Platos para compartir</span></li>
+                    <li><span class="lang-cat">Plats saludables</span><span class="lang-cast">Platos saludables</span></li>
+                </ul>
+            </div>
+
+            <div class="detail-card">
+                <h3><i class="fas fa-wifi"></i> 
+                    <span class="lang-cat">Comoditats</span>
+                    <span class="lang-cast">Comodidades</span>
+                </h3>
+                <ul class="detail-list">
+                    <li><span class="lang-cat">Lavabo públic</span><span class="lang-cast">Aseo público</span></li>
+                    <li><span class="lang-cat">Servei de bar</span><span class="lang-cast">Servicio de bar</span></li>
+                    <li><span class="lang-cat">Wi-Fi gratuït</span><span class="lang-cast">Wi-Fi gratuito</span></li>
+                </ul>
+            </div>
+
+             <div class="detail-card">
+                <h3><i class="fas fa-child"></i> 
+                    <span class="lang-cat">Nens</span>
+                    <span class="lang-cast">Niños</span>
+                </h3>
+                <ul class="detail-list">
+                    <li><span class="lang-cat">Apte per a aniversaris infantils</span><span class="lang-cast">Apto para cumpleaños infantiles</span></li>
+                    <li><span class="lang-cat">Ideal per a nens</span><span class="lang-cast">Ideal para niños</span></li>
+                    <li><span class="lang-cat">Menú infantil</span><span class="lang-cast">Menú infantil</span></li>
+                    <li><span class="lang-cat">Trones disponibles</span><span class="lang-cast">Tronas disponibles</span></li>
+                </ul>
+            </div>
+
+            <div class="detail-card">
+                <h3><i class="fas fa-car"></i> 
+                    <span class="lang-cat">Aparcament i Animals</span>
+                    <span class="lang-cast">Aparcamiento y Mascotas</span>
+                </h3>
+                <ul class="detail-list">
+                    <li><span class="lang-cat">Moltes places disponibles</span><span class="lang-cast">Muchas plazas disponibles</span></li>
+                    <li><span class="lang-cat">Aparcament gratuït</span><span class="lang-cast">Aparcamiento gratuito</span></li>
+                    <li><span class="lang-cat">S'admeten gossos</span><span class="lang-cast">Se admiten perros</span></li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews">
+        <h2 class="section-title fade-in">
+            <span class="lang-cat">Ressenyes</span>
+            <span class="lang-cast">Reseñas</span>
+        </h2>
+        <div class="rating-display">
+            <i class="fas fa-star"></i> 4.2/5
+        </div>
+        <div class="reviews-grid fade-in">
+            
+            <div class="review-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="review-text">
+                    <span class="lang-cat">"Excel·lent lloc per menjar en família, amb una gastronomia de temporada i de gran qualitat. El servei és molt atent i amable."</span>
+                    <span class="lang-cast">"Excelente lugar para comer en familia, con una gastronomía de temporada y de gran calidad. El servicio es muy atento y amable."</span>
+                </p>
+            </div>
+
+            <div class="review-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+                <p class="review-text">
+                    <span class="lang-cat">"La nostra experiència va ser molt bona. Recomanem reservar perquè s'omple ràpidament. Restaurant de brasa amb zona de pícnic. Vam provar torrades, botifarres, peus de porc, calçots, allioli, pa torrat, crema catalana i vi en porró. Tot molt bo i en quantitat adequada. Servei molt amable. Tornarem per provar les paelles. Molt recomanable."</span>
+                    <span class="lang-cast">"Nuestra experiencia fue muy buena. Recomendamos reservar porque se llena rápidamente. Restaurante de brasa con zona de pícnic. Probamos tostadas, butifarras, pies de cerdo, calçots, alioli, pan tostado, crema catalana y vino en porrón. Todo muy bueno y en cantidad adecuada. Servicio muy amable. Volveremos para probar las paellas. Muy recomendable."</span>
+                </p>
+            </div>
+
+            <div class="review-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="review-text">
+                    <span class="lang-cat">"Restaurant en plena natura al Parc de Collserola. Molt concorregut per la seva proximitat a Barcelona i la qualitat del menjar. Els dies festius és imprescindible reservar. El servei és molt amable i, si celebres un aniversari, fan una experiència molt divertida. Molt recomanable."</span>
+                    <span class="lang-cast">"Restaurante en plena naturaleza en el Parque de Collserola. Muy concurrido por su proximidad a Barcelona y la calidad de la comida. Los días festivos es imprescindible reservar. El servicio es muy amable y, si celebras un cumpleaños, hacen una experiencia muy divertida. Muy recomendable."</span>
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <h2 class="section-title fade-in">
+            <span class="lang-cat">Galeria</span>
+            <span class="lang-cast">Galería</span>
+        </h2>
+        <div class="gallery-grid fade-in">
+            <div class="gallery-item"><img src="paella.jpg" alt="Paella"></div>
+            <div class="gallery-item"><img src="crema.jpg" alt="Postres"></div>
+            <div class="gallery-item"><img src="terrace.jpg" alt="Terrassa"></div>
+            <div class="gallery-item"><img src="exterior.jpg" alt="Exterior"></div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section id="info" style="background: #fff;">
+        <div class="info-container fade-in">
+            
+            <!-- Hours -->
+            <div class="info-column">
+                <h3>
+                    <span class="lang-cat">Horari</span>
+                    <span class="lang-cast">Horario</span>
+                </h3>
+                <div class="hours-list">
+                    <div>
+                        <span class="lang-cat">Dilluns</span><span class="lang-cast">Lunes</span>
+                        <span>9:00–19:00</span>
+                    </div>
+                    <div>
+                        <span class="lang-cat">Dimarts</span><span class="lang-cast">Martes</span>
+                        <span class="lang-cat" style="color:red">Tancat</span><span class="lang-cast" style="color:red">Cerrado</span>
+                    </div>
+                    <div>
+                        <span class="lang-cat">Dimecres</span><span class="lang-cast">Miércoles</span>
+                        <span>9:00–19:00</span>
+                    </div>
+                    <div>
+                        <span class="lang-cat">Dijous</span><span class="lang-cast">Jueves</span>
+                        <span>9:00–19:00</span>
+                    </div>
+                    <div>
+                        <span class="lang-cat">Divendres</span><span class="lang-cast">Viernes</span>
+                        <span>9:00–23:30</span>
+                    </div>
+                    <div>
+                        <span class="lang-cat">Dissabte</span><span class="lang-cast">Sábado</span>
+                        <span>9:00–23:30</span>
+                    </div>
+                    <div>
+                        <span class="lang-cat">Diumenge</span><span class="lang-cast">Domingo</span>
+                        <span>9:00–19:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div class="info-column">
+                <h3>
+                    <span class="lang-cat">Ubicació</span>
+                    <span class="lang-cast">Ubicación</span>
+                </h3>
+                <div class="address-box">
+                    <p style="margin-bottom: 1rem;">
+                        <strong>
+                            <span class="lang-cat">Adreça:</span>
+                            <span class="lang-cast">Dirección:</span>
+                        </strong><br>
+                        BV-1462, Carrer Vallvidrera a Sant Cugat, Km 6.5,<br>
+                        08017 Barcelona
+                    </p>
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2993.4567890123456!2d2.0456789!3d41.4123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a49876543210ab%3A0x1234567890abcdef!2sBV-1462%2C%20Carrer%20Vallvidrera%20a%20Sant%20Cugat%2C%20Km%206.5%2C%2008017%20Barcelona!5e0!3m2!1sca!2ses!4v1234567890123!5m2!1sca!2ses" 
+                            width="100%" 
+                            height="300" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="info-column">
+                <h3>
+                    <span class="lang-cat">Contacte</span>
+                    <span class="lang-cast">Contacto</span>
+                </h3>
+                <p style="margin-bottom: 1rem;">
+                    <span class="lang-cat">Telèfon:</span><span class="lang-cast">Teléfono:</span><br>
+                    <strong>625 96 52 52</strong>
+                </p>
+                <a href="tel:+34625965252" class="contact-btn">
+                    <i class="fas fa-phone-alt"></i>
+                    <span class="lang-cat">Truca'ns</span>
+                    <span class="lang-cast">Llámanos</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">Font de Les Planes</div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-tripadvisor"></i></a>
+        </div>
+        <p>
+            <span class="lang-cat">© 2026 Font de Les Planes. Tots els drets reservats.</span>
+            <span class="lang-cast">© 2026 Font de Les Planes. Todos los derechos reservados.</span>
+        </p>
+    </footer>
+
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('show-cast');
+        }
+
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
